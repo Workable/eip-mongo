@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "Workable/eip-mongodb-adapter"
+    "url": "Workable/eip-rabbit"
   }
 }
