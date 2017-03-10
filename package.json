@@ -1,5 +1,5 @@
 {
-  "name": "eip-mongodb",
+  "name": "eip-mongo",
   "description": "Mongodb Adapter for the eip module. It supports an aggregator store saved in mongodb.",
   "version": "0.0.1",
   "dependencies": {
