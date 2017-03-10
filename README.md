@@ -20,7 +20,7 @@ npm install --save eip-mongo
 
 ```javascript
 const eip = require('eip');
-const { Store } = require(eip-mongo)
+const { Store } = require('eip-mongo')
 const store = new Store(3600) // ttl to delete from mongo after 3600 sec
 const aggregator = new eip.Route().aggregate({ store });
 ```

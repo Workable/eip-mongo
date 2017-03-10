@@ -1,7 +1,7 @@
 {
   "name": "eip-mongodb",
   "description": "Mongodb Adapter for the eip module. It supports an aggregator store saved in mongodb.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "log4js": "^1.1.0"
   },
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "Workable/eip-rabbit"
+    "url": "Workable/eip-mongo"
   }
 }
