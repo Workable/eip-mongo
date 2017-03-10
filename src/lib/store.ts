@@ -1,5 +1,5 @@
 import { Store as StoreInterface } from 'eip';
-import Aggregation from './models/Aggregation';
+import Aggregation from './models/aggregation';
 import * as mongoose from 'mongoose';
 
 declare type schema = { headers: any, body: any[] }
