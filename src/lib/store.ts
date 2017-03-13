@@ -22,17 +22,19 @@ export default class Store extends StoreInterface {
 
   async append(correlationId: string, headers: any, body: any) {
     const headersSet = this.getHeadersSet(headers);
-    return Aggregation.findOneAndUpdate({ correlationId }, {
+    const aggregation = await Aggregation.findOneAndUpdate({ correlationId }, {
       $set: headersSet,
       $setOnInsert: {
         expireAt: this.getExpireAt()
       },
       $push: { body: body }
     }, this.mongoOptions);
+    return aggregation.toObject();
   }
 
   async getById(correlationId: string) {
-    return await Aggregation.findOne({ correlationId });
+    const aggregation = await Aggregation.findOne({ correlationId });
+    return aggregation && aggregation.toObject();
   }
 
   async setStatus(correlationId: string, status: string) {
@@ -46,10 +48,11 @@ export default class Store extends StoreInterface {
     if (status === Store.STATUS.TIMEOUT) {
       $inc['headers.timeoutNum'] = 1;
     }
-    return Aggregation.findOneAndUpdate({ correlationId }, {
+    const aggregation = await Aggregation.findOneAndUpdate({ correlationId }, {
       $set,
       $inc
     }, { ...this.mongoOptions, upsert: false });
+    return aggregation && aggregation.toObject();
   }
 
   private getHeadersSet(headers) {
