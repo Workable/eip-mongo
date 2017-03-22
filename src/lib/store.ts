@@ -48,7 +48,7 @@ export default class Store extends StoreInterface {
     if (status === Store.STATUS.TIMEOUT) {
       $inc['headers.timeoutNum'] = 1;
     }
-    const aggregation = await Aggregation.findOneAndUpdate({ correlationId }, {
+    const aggregation = await Aggregation.findOneAndUpdate({ correlationId, 'headers.status': { $ne: Store.STATUS.COMPLETED } }, {
       $set,
       $inc
     }, { ...this.mongoOptions, upsert: false });

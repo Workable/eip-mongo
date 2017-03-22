@@ -56,12 +56,22 @@ describe('Store', function () {
   });
 
   describe('setStatus', function () {
-    it('should throw error for non existing record', async function () {
-      await store.setStatus('1', 'TEST')
-        .then(async d => {
-          should.equal(undefined, d);
-          should.equal(undefined, await store.getById('1'));
-        });
+    it('should return undefined for non existing record', async function () {
+      const cache = await store.setStatus('1', 'TEST');
+      should.equal(undefined, cache);
+      should.equal(undefined, await store.getById('1'));
+    });
+
+    it('should return undefined for already completed record', async function () {
+      await store.append('1', { id: '1', test: true }, { body: true });
+      let cache = await store.setStatus('1', Store.STATUS.COMPLETED);
+      cache.should.containDeep({
+        headers: { id: '1', test: true, status: 'COMPLETED', aggregationNum: 1, timeoutNum: 0 },
+        body: [{ body: true }]
+      });
+
+      cache = await store.setStatus('1', 'TEST');
+      should.equal(undefined, cache);
     });
 
     it('should update status and return', async function () {
