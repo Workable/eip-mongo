@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "eip": "^1.0.2",
-    "mongoose": "^4.0.0"
+    "mongoose": ">=4.0.0"
   },
   "main": "build/lib/index.js",
   "typings": "build/index",
