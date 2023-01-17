@@ -1,7 +1,7 @@
 {
   "name": "eip-mongo",
   "description": "Mongodb Adapter for the eip module. It supports an aggregator store saved in mongodb.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
     "log4js": "^1.1.0"
   },
